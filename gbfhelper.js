@@ -1,3 +1,4 @@
+//null handlers
 function isNull(a){return a === null;}
 function isUndefined(a){return a === undefined;}
 function isNullOrUndefined(a){return isNull(a) || isUndefined(a);}
@@ -123,8 +124,7 @@ function showSkillCD(){
 		});
 	});
 }
-
-
+//Keypress handler
 document.addEventListener('keydown', function (e) {
 	if(e.which == 32){e.preventDefault();e.stopPropagation();	}
 	if (e.keyCode === 32){pSpaceBar(e);}
@@ -133,8 +133,7 @@ document.addEventListener('keydown', function (e) {
 	if (e.keyCode === 82){pResetBonus();}
 });
 
-//DOMContentLoaded
-//lis-ability btn-ability-available
+//DOMContentLoaded - Work around for showSkillCD not executing under listener on DOMContentLoaded 
 var ready = function () {
 	if (document.querySelectorAll('[ability-id]').length > 1) {
 		showSkillCD();
