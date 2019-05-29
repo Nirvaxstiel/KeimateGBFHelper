@@ -7,5 +7,11 @@ Bring back Viramate pls
 3. Profit!
 
 # Example of extensions:
-[User Javascript and CSS](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
+* [User Javascript and CSS](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
+
+
+# Existing Problems:
+* Quick Skill cool down timers only update on page load
+* Co-op/Co-op Raid code opens Raid information dialog before copying.
+  - Try to Ctrl + C fast for now
 
