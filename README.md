@@ -23,9 +23,9 @@ Bring back Viramate pls
 
 # How to import:
 1. Download the current [JS](https://github.com/Nirvaxstiel/GBF-Helper/blob/master/gbfhelper.js) and [CSS](https://github.com/Nirvaxstiel/GBF-Helper/blob/master/gbfhelper.css) files: 
-1. Install any Extension that allows injection of user-created Javascript and CSS
-2. Paste the code
-3. Profit!
+2. Install any Extension that allows injection of user-created Javascript and CSS
+3. Paste the code
+4. Profit!
 
 # Example of extensions:
 * [User Javascript and CSS](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
