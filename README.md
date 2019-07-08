@@ -20,6 +20,8 @@ Bring back Viramate pls
   - Uncapping Weapons
   - Buying
   - Accept/Ok
+* Quick Skill cool down timers
+* Precise Enemy HP Bars
 
 # How to import:
 1. Download the current [JS](https://github.com/Nirvaxstiel/GBF-Helper/blob/master/gbfhelper.js) and [CSS](https://github.com/Nirvaxstiel/GBF-Helper/blob/master/gbfhelper.css) files: 
@@ -32,7 +34,6 @@ Bring back Viramate pls
 
 
 # Existing Problems:
-* Quick Skill cool down timers only update on page load
 * Co-op/Co-op Raid code opens Raid information dialog before copying.
   - Try to Ctrl + C fast for now
 
