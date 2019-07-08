@@ -34,20 +34,17 @@ Bring back Viramate pls
 # How to import:
 1. Download Keimate folder
 2. Open Chrome > Extensions (Enable Developers Mode)
+3. Load Unpacked
+4. Choose the Keimate Folder
+5. ??? --> Profit
 
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/toExtensions.png">
-
+  
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/developermode.PNG">
-
-3. Load Unpacked
-
+  
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/loadunpacked.PNG">
-
-4. Choose the Keimate Folder
-
+  
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/keimatefolder.jpg">
-
-5. ??? --> Profit
 
 # Example of extensions (If you only want the CSS elements and avoid the scripts)
 * [User Javascript and CSS](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
