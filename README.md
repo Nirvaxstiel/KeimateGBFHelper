@@ -3,7 +3,7 @@ Bring back Viramate pls
 
 # What I have re-created thus far:
  
-**CSS**
+## **CSS**
 * Hide left Mobage Bar
 * Improved, Slimmer Scrollbar
 <img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/mobagescrollbars.png">
@@ -11,7 +11,7 @@ Bring back Viramate pls
 * Highlight and copy Raid/Coop code
 <img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/raidcodes.png">
 
-**JS**
+## **JS**
 * Press 'C' during combat to simulate toggling of the CA button
 * Quick Skills cooldown timer view
 * Precise Enemy HP Bars
