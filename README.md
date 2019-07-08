@@ -4,34 +4,44 @@ Bring back Viramate pls
 # What I have re-created thus far:
  
 **CSS**
-* Superior Font
 * Hide left Mobage Bar
 * Improved, Slimmer Scrollbar
+<img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/mobagescrollbars.png">
+
 * Highlight and copy Raid/Coop code
+<img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/raidcodes.png">
 
 **JS**
-* Press 'A' during combat to simulate clicking on the Attack button
 * Press 'C' during combat to simulate toggling of the CA button
+* Quick Skills cooldown timer view
+* Precise Enemy HP Bars
+<img width="50%" height="50%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/battleui.png">
+
 * Press 'R' whilst traversing through inventory weapons/summons to reset "+Mark" bonuses
-* Show CD timers of skills without clicking on individual characters
 * Press 'Spacebar' to accept transactional actions;
   - Trading
   - Upgrading Weapons
   - Uncapping Weapons
   - Buying
   - Accept/Ok
-* Quick Skill cool down timers
-* Precise Enemy HP Bars
 
 # How to import:
-1. Download the current [JS](https://github.com/Nirvaxstiel/GBF-Helper/blob/master/gbfhelper.js) and [CSS](https://github.com/Nirvaxstiel/GBF-Helper/blob/master/gbfhelper.css) files: 
-2. Install any Extension that allows injection of user-created Javascript and CSS
-3. Paste the code
-4. Profit!
+1. Download Keimate folder
+2. Open Chrome > Extensions (Enable Developers Mode)
 
-# Example of extensions:
+<img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/toExtensions.png">
+<img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/developermode.PNG">
+
+3. Load Unpacked
+<img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/loadunpacked.PNG">
+
+4. Choose the Keimate Folder
+<img width="30%" height="30%" src="https://github.com/Nirvaxstiel/GBF-Helper/blob/master/Keimate/images/keimatefolder.jpg">
+
+5. ??? --> Profit
+
+# Example of extensions (If you only want the CSS elements and avoid the scripts)
 * [User Javascript and CSS](https://chrome.google.com/webstore/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld)
-
 
 # Existing Problems:
 * Co-op/Co-op Raid code opens Raid information dialog before copying.
