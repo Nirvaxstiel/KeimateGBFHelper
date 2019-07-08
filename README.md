@@ -24,6 +24,9 @@ Bring back Viramate pls
   - Uncapping Weapons
   - Buying
   - Accept/Ok
+  
+## **Work In Progress**
+* Add Item tracking bar
 
 # How to import:
 1. Download Keimate folder
