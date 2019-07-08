@@ -8,7 +8,7 @@ Bring back Viramate pls
 * Improved, Slimmer Scrollbar
 
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/mobagescrollbars.png">
-
+  
 * Highlight and copy Raid/Coop code
 
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/raidcodes.png">
