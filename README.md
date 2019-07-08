@@ -7,12 +7,12 @@ Bring back Viramate pls
 * Hide left Mobage Bar
 * Improved, Slimmer Scrollbar
 
-<img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/mobagescrollbars.png">
+  <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/mobagescrollbars.png">
 
 
 * Highlight and copy Raid/Coop code
 
-<img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/raidcodes.png">
+  <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/raidcodes.png">
 
 
 ## **JS**
@@ -20,7 +20,7 @@ Bring back Viramate pls
 * Quick Skills cooldown timer view
 * Precise Enemy HP Bars
 
-<img width="50%" height="50%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/battleui.png">
+  <img width="50%" height="50%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/battleui.png">
 
 
 * Press 'R' whilst traversing through inventory weapons/summons to reset "+Mark" bonuses
@@ -38,19 +38,19 @@ Bring back Viramate pls
 1. Download Keimate folder
 2. Open Chrome > Extensions (Enable Developers Mode)
 
-<img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/toExtensions.png">
+  <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/toExtensions.png">
 
-<img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/developermode.PNG">
+  <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/developermode.PNG">
 
 
 3. Load Unpacked
 
-<img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/loadunpacked.PNG">
+  <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/loadunpacked.PNG">
 
 
 4. Choose the Keimate Folder
 
-<img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/keimatefolder.jpg">
+  <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/keimatefolder.jpg">
 
 
 5. ??? --> Profit
