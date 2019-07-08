@@ -6,16 +6,22 @@ Bring back Viramate pls
 ## **CSS**
 * Hide left Mobage Bar
 * Improved, Slimmer Scrollbar
+
 <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/mobagescrollbars.png">
 
+
 * Highlight and copy Raid/Coop code
+
 <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/raidcodes.png">
+
 
 ## **JS**
 * Press 'C' during combat to simulate toggling of the CA button
 * Quick Skills cooldown timer view
 * Precise Enemy HP Bars
+
 <img width="50%" height="50%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/battleui.png">
+
 
 * Press 'R' whilst traversing through inventory weapons/summons to reset "+Mark" bonuses
 * Press 'Spacebar' to accept transactional actions;
@@ -33,13 +39,19 @@ Bring back Viramate pls
 2. Open Chrome > Extensions (Enable Developers Mode)
 
 <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/toExtensions.png">
+
 <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/developermode.PNG">
 
+
 3. Load Unpacked
+
 <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/loadunpacked.PNG">
 
+
 4. Choose the Keimate Folder
+
 <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/keimatefolder.jpg">
+
 
 5. ??? --> Profit
 
