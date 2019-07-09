@@ -29,7 +29,9 @@ Bring back Viramate pls
   - Accept/Ok
   
 ## **Work In Progress**
-* Add Item tracking bar
+* Add Item tracking bar SOON™
+
+  <img src="https://i.imgur.com/GxUo3Ik.png">
 
 # How to import:
 1. Download Keimate folder
