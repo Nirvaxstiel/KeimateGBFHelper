@@ -1,7 +1,7 @@
 //start connection in content script
-let contentPort = chrome.runtime.connect({
+/*let contentPort = chrome.runtime.connect({
    name: 'background-content'
-});
+});*/
 
 //Append your pageScript.js to "real" webpage. So will it can full access to webpate.
 var s = document.createElement('script');
