@@ -1,6 +1,6 @@
 /*--Better Font--*/
 .jssdk{
-	font-family: vmLato, "FOT-テロップ明朝 Pro D", "Average Sans", "Yu Gothic", Meiryo, sans-serif !important;	
+	font-family: vmLato, "FOT-テロップ明朝 Pro D", "Average Sans", "Yu Gothic", Meiryo, sans-serif !important;
 }
 
 html[lang="ja"] body, html[lang="ja"] .prt-user-info .prt-info-profile .btn-user-name, html[lang="ja"] .prt-user-name .txt-user-name {
@@ -52,11 +52,41 @@ html[lang="ja"] body, html[lang="ja"] .prt-user-info .prt-info-profile .btn-user
 	-webkit-user-select: all;  /* Chrome 49+ */
 	-moz-user-select: all;     /* Firefox 43+ */
 	-ms-user-select: all;      /* No support yet */
-	user-select: all;          /* Likely future */   
+	user-select: all;          /* Likely future */
 }
 
 /*Item tracker bar*/
 
 ._2ZVw0TYkWYwvh2YurVv1OG, ._38sXs6kUdRiSAYy7O-rDEe{
-	top:50px !important; 
+	/*  top:50px !important;  */
+}
+.keimateItemTracker{
+	/* position: absolute;
+    height: 50px;
+    width: 100%;
+	background-color: white; */
+}
+
+.keimateTracker{
+	position : absolute;
+	bottom : 30px;
+	right : 3px;
+	width : 10px;
+	height : 10px;
+	background-color : #fff;
+	border-radius : 50%;
+	display :inline-block;
+	cursor : pointer;
+}
+
+.keimateTracked{
+	position : absolute;
+	bottom : 30px;
+	right : 3px;
+	width : 10px;
+	height : 10px;
+	background-color : rgb(163, 197, 131);
+	border-radius : 50%;
+	display :inline-block;
+	cursor : pointer;
 }
