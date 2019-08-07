@@ -5,7 +5,7 @@
     "manifest_version": 2,
 	"permissions": ["activeTab", "declarativeContent", "storage","tabs"],
 	"background": {
-      "scripts": ["background.js", "js/keimate/keimate.js"],
+      "scripts": ["background.js", "js/keimate/keimate-minified.js"],
       "persistent": false
     },
 	"options_page": "options.html",
@@ -25,14 +25,14 @@
       "128": "images/get_started128.png"
     },
 	"web_accessible_resources": [ 
-		"css/keimate/keimate.css",
-		"js/keimate/keimate.js"
+		"css/keimate/keimate-minified.css",
+		"js/keimate/keimate-minified.js"
 	],
 	"content_scripts": [
 		{
 		  "matches": ["http://game.granbluefantasy.jp/*"], 
-		  "js": ["js/contentScripts.js"],
-		  "css" : ["css/keimate/keimate.css"]
+		  "js": ["js/keimate/keimate-minified.js", "js/contentScripts.js"],
+		  "css" : ["css/keimate/keimate-minified.css"]
 		}
 	]
 }
