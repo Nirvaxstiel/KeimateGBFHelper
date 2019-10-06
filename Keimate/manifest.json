@@ -1,37 +1,38 @@
 {
     "name": "Keimate",
-    "version": "1.0",
+    "version": "1.54",
     "description": "Fuck KMR",
     "manifest_version": 2,
 	"permissions": ["activeTab", "declarativeContent", "storage","tabs"],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"background": {
-      "scripts": ["background.js", "js/keimate/keimate-minified.js"],
+      "scripts": ["background.js", "js/keimate/keimate-min.js"],
       "persistent": false
     },
 	"options_page": "options.html",
 	"page_action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "16": "images/get_started16.png",
-        "32": "images/get_started32.png",
-        "48": "images/get_started48.png",
-        "128": "images/get_started128.png"
+        "16": "images/keimate-16.png",
+        "32": "images/keimate-32.png",
+        "48": "images/keimate-48.png",
+        "128": "images/keimate-128.png"
       }
     },
 	"icons": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
+        "16": "images/keimate-16.png",
+        "32": "images/keimate-32.png",
+        "48": "images/keimate-48.png",
+        "128": "images/keimate-128.png"
     },
-	"web_accessible_resources": [ 
+	"web_accessible_resources": [
 		"css/keimate/keimate-minified.css",
-		"js/keimate/keimate-minified.js"
+		"js/keimate/keimate-min.js"
 	],
 	"content_scripts": [
 		{
-		  "matches": ["http://game.granbluefantasy.jp/*"], 
-		  "js": ["js/keimate/keimate-minified.js", "js/contentScripts.js"],
+		  "matches": ["http://game.granbluefantasy.jp/*"],
+		  "js": ["js/keimate/keimate-min.js", "js/contentScripts.js"],
 		  "css" : ["css/keimate/keimate-minified.css"]
 		}
 	]
