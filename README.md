@@ -1,5 +1,6 @@
 # GBF-Helper
-<img width="10%" height="10%" src="https://media.discordapp.net/attachments/202344810022043648/630295077847302145/mqdefault.jpg"> Bring back Viramate pls (Click to watch)
+<img width="50%" height="50%" src="https://media.discordapp.net/attachments/202344810022043648/630295077847302145/mqdefault.jpg">
+Bring back Viramate pls (Click to watch)
 
 [![Keimate](http://cdn-b-east.streamable.com/image/hewga_first.jpg?token=KfMVh-fBBpyRRPbR2MZpJg&expires=1563547380)](https://streamable.com/hewga "Keimate")
 
@@ -16,6 +17,8 @@
   <img width="30%" height="30%" src="https://raw.githubusercontent.com/Nirvaxstiel/GBF-Helper/master/Keimate/images/raidcodes.png">
 
 ## **JS**
+## During Combat
+* Character Selection: 1,2,3,4 -> Skill activation: Q,W,E,R
 * Press 'C' during combat to simulate toggling of the CA button
 * Quick Skills cooldown timer view
 * Precise Enemy HP Bars
@@ -28,7 +31,7 @@
   - Upgrading Weapons
   - Uncapping Weapons
   - Buying
-  - Accept/Ok
+  - Accept/Ok 
   
 ## **Work In Progress**
 * Add Item tracking bar SOON™
