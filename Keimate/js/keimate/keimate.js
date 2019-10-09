@@ -24,32 +24,13 @@ function numberFormat(labelValue, i) {
 function random(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-/* function numberFormat (labelValue, i){
-    // Nine Zeroes for Billions
-    return Math.abs(Number(labelValue)) >= 1.0e+9
-
-    ? (Math.abs(Number(labelValue)) / 1.0e+9).toFixed(1) + " b"
-    // Six Zeroes for Millions
-    : Math.abs(Number(labelValue)) >= 1.0e+6
-
-    ? (Math.abs(Number(labelValue)) / 1.0e+6).toFixed(1) + " m"
-    // Three Zeroes for Thousands
-    : Math.abs(Number(labelValue)) >= 1.0e+3
-
-    ? (Math.abs(Number(labelValue)) / 1.0e+3).toFixed(1) + " k"
-
-    : Math.abs(Number(labelValue));
-} */
-
 var simulateClick = function(elem) {
   try {
     var rect = elem.getBoundingClientRect(),
       topEnter = rect.top,
       leftEnter = rect.left, // coordinates of elements topLeft corner
-      topMid = random(rect.bottom, rect.top), // Math.floor(Math.random() * (rect.bottom-rect.top+1)) + rect.top,
-      leftMid = random(rect.right, rect.left), //Math.floor(Math.random() * (rect.right-rect.left+1)) + rect.left
-      //topMid = topEnter + rect.height / 2,
-      //leftMid = topEnter + rect.width / 2, // coordinates of elements center
+      topMid = random(rect.bottom, rect.top), 
+      leftMid = random(rect.right, rect.left),  // coordinates of elements center
       ddelay = (rect.height + rect.width) * 0.1, // delay depends on elements size, default 2x
       ducInit = {
         bubbles: true,
