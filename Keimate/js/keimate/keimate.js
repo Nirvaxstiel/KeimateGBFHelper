@@ -67,13 +67,12 @@ var simulateClick = function(elem) {
       elem.dispatchEvent(mclick);
     }, ddelay * random(.99, 1.2)); //default 1.2x
   } catch (e) {
-    return;
   }
 }
 
 /**Keyboard Events**/
 function pCA() {
-  if(!isCombat()) return null;
+  if(!isCombat()) {return};
   var c = document.querySelector('div.btn-lock.lock1');
   var c1 = document.querySelector('div.btn-lock.lock0'); //no auto
   !isNullOrUndefined(c) ? simulateClick(c) : null;
@@ -138,7 +137,7 @@ function pSpaceBar(e) {
 }
 /**Show Skill Cooldowns**/
 function showSkillCD() {
-  if(!isCombat()) return null;
+  if(!isCombat()) {return};
   //all charater skill nodes
   var charaSkillDetails = document.querySelectorAll('[ability-id]');
   var cdCharaSkills = []; //sorted into chara[index], skills
@@ -182,7 +181,7 @@ function showSkillCD() {
 }
 /**Show Enemy HP**/
 function showBossHP() {
-  if(!isCombat()) return null;
+  if(!isCombat()) {return};
   try {
     var a = stage.pJsnData.boss;
     var enemyId = -1;
@@ -259,13 +258,13 @@ document.addEventListener('keydown', function(e) {
   var combat2 = [49, 50, 51, 52];
 
   if (combat2.includes(e.keyCode)) {
-    if(!isCombat()) return null;
+    if(!isCombat()) {return};
     var index = combat2.indexOf(e.keyCode);
     shortcutSelectChara(index)
   }
 
   if (combat.includes(e.keyCode)) {
-    if(!isCombat()) return null;
+    if(!isCombat()) {return};
     var index = combat.indexOf(e.keyCode);
     shortcutSkill(index);
   }
@@ -286,7 +285,7 @@ function shortcutSelectChara(index){
   try{
     simulateClick(document.querySelectorAll("div.lis-character" + index + ".btn-command-character")[0]);
     setCharaSkill(index);
-  }catch(e){ return null; }
+  }catch(e){  }
 }
 
 function shortcutSkill(index){
@@ -296,7 +295,7 @@ function shortcutSkill(index){
       console.log(sSkill);
       simulateClick(sSkill[index]);
     }
-  }catch(e){ return null; }
+  }catch(e){  }
 }
 
 // The DOM node to observe
@@ -349,7 +348,6 @@ var ready = function() {
       try {
         showSkillCD();
         showBossHP();
-        return;
       } catch (e) {
         if (e instanceof ReferenceError) {};
       }
