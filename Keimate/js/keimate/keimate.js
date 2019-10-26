@@ -24,13 +24,20 @@ function numberFormat(labelValue, i) {
 function random(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function isCombat(){
+  return window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") >-1;
+}
+
 var simulateClick = function(elem) {
   try {
     var rect = elem.getBoundingClientRect(),
       topEnter = rect.top,
       leftEnter = rect.left, // coordinates of elements topLeft corner
-      topMid = random(rect.bottom, rect.top), 
-      leftMid = random(rect.right, rect.left),  // coordinates of elements center
+      topMid = random(rect.bottom, rect.top), // Math.floor(Math.random() * (rect.bottom-rect.top+1)) + rect.top,
+      leftMid = random(rect.right, rect.left), //Math.floor(Math.random() * (rect.right-rect.left+1)) + rect.left
+      //topMid = topEnter + rect.height / 2,
+      //leftMid = topEnter + rect.width / 2, // coordinates of elements center
       ddelay = (rect.height + rect.width) * 0.1, // delay depends on elements size, default 2x
       ducInit = {
         bubbles: true,
@@ -65,12 +72,8 @@ var simulateClick = function(elem) {
 }
 
 /**Keyboard Events**/
-
-function keyboardCombat(chara, skill) {
-
-}
-
 function pCA() {
+  if(!isCombat()) return null;
   var c = document.querySelector('div.btn-lock.lock1');
   var c1 = document.querySelector('div.btn-lock.lock0'); //no auto
   !isNullOrUndefined(c) ? simulateClick(c) : null;
@@ -135,6 +138,7 @@ function pSpaceBar(e) {
 }
 /**Show Skill Cooldowns**/
 function showSkillCD() {
+  if(!isCombat()) return null;
   //all charater skill nodes
   var charaSkillDetails = document.querySelectorAll('[ability-id]');
   var cdCharaSkills = []; //sorted into chara[index], skills
@@ -178,6 +182,7 @@ function showSkillCD() {
 }
 /**Show Enemy HP**/
 function showBossHP() {
+  if(!isCombat()) return null;
   try {
     var a = stage.pJsnData.boss;
     var enemyId = -1;
@@ -205,7 +210,17 @@ function showBossHP() {
     if (e instanceof ReferenceError) {}
   }
 }
+
 var sSkill = [];
+var selectedCombatChara;
+
+document.addEventListener('click', function(e) {
+  if(isCombat() && !isNullOrUndefined(e.target.parentNode) && !isNullOrUndefined(e.target.parentNode.getAttribute("pos"))){
+    selectedCombatChara = e.target.parentNode;
+    setCharaSkill(selectedCombatChara.getAttribute("pos"));
+  }
+});
+
 //Keypress handler
 document.addEventListener('keydown', function(e) {
   if (e.which === 32) {
@@ -228,43 +243,61 @@ document.addEventListener('keydown', function(e) {
   if (e.keyCode === 67) {
     pCA();
   }
-  //qwer -> 113,119,101,114
-  //QWER -> 81, 87, 69, 82
-  var combat = [81, 87, 69, 82];
-  var combat2 = [49, 50, 51, 52];
-  if (combat2.includes(e.keyCode)) {
-    var index = combat2.indexOf(e.keyCode);
-    if (window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") > -1) {
-      simulateClick(document.querySelectorAll("div.lis-character" + index + ".btn-command-character")[0]);
-      sSkill = [];
-      // document.querySelectorAll("div.prt-ability-list")[0].childNodes[1].className.includes("btn-ability-available")
-      document.querySelectorAll("div.prt-ability-list")[index].childNodes.forEach(function(val, i) {
-        if (!isNullOrUndefined(val.className) && val.className.includes("btn-ability-available")) {
-          if (parseInt(val.parentNode.parentNode.getAttribute("pos")) === (index + 1)) {
-            sSkill.push(val);
-          }
-        }
-      });
-    }
-  }
-  if (combat.includes(e.keyCode)) {
-    if (window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") > -1) {
-      var index = combat.indexOf(e.keyCode);
-      simulateClick(sSkill[index]);
-    }
-  }
-  //R
   if (e.keyCode === 82) {
     pResetBonus();
   }
-  //ESC
   if (e.key === "Escape" || e.key === "Esc") {
     var backButton = document.querySelectorAll("div.btn-command-back");
     if (backButton.length > 0 && !isNullOrUndefined(backButton[0])) {
       simulateClick(backButton[0]);
     }
   }
+
+  //qwer -> 113,119,101,114 (skill) || QWER -> 81, 87, 69, 82 (skill)
+  var combat = [81, 87, 69, 82];
+  //1234 -> 49, 50, 51, 52 (character)
+  var combat2 = [49, 50, 51, 52];
+
+  if (combat2.includes(e.keyCode)) {
+    if(!isCombat()) return null;
+    var index = combat2.indexOf(e.keyCode);
+    shortcutSelectChara(index)
+  }
+
+  if (combat.includes(e.keyCode)) {
+    if(!isCombat()) return null;
+    var index = combat.indexOf(e.keyCode);
+    shortcutSkill(index);
+  }
+
 });
+
+function setCharaSkill(index){
+  sSkill = [];
+  // document.querySelectorAll("div.prt-ability-list")[0].childNodes[1].className.includes("btn-ability-available")
+  document.querySelectorAll("div.prt-ability-list")[index].childNodes.forEach(function(val, i) {
+    if (!isNullOrUndefined(val.className) && val.className.includes("btn-ability-")) {
+      sSkill.push(val);
+    }
+  });
+}
+
+function shortcutSelectChara(index){
+  try{
+    simulateClick(document.querySelectorAll("div.lis-character" + index + ".btn-command-character")[0]);
+    setCharaSkill(index);
+  }catch(e){ return null; }
+}
+
+function shortcutSkill(index){
+  try{
+    if(sSkill[index].className.includes("btn-ability-available")){
+      console.log(index);
+      console.log(sSkill);
+      simulateClick(sSkill[index]);
+    }
+  }catch(e){ return null; }
+}
 
 // The DOM node to observe
 // create an observer instance
@@ -291,9 +324,8 @@ var ready = function() {
   	document.querySelector("body.jssdk").appendChild(trackerBar);
   	return;
   } */
-  if (window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") > -1) {
+  if (isCombat()) {
     if (document.querySelectorAll('[ability-id]').length > 0 && document.querySelectorAll("div.prt-gauge-area")[0].childNodes.length > 0) {
-
       document.querySelectorAll('[ability-id]').forEach(function(val, index) {
         observer.observe(val, {
           attributes: true,
@@ -314,9 +346,6 @@ var ready = function() {
           val.style.cssText = "display: inline-block;cursor:pointer;";
         }
       });
-
-
-
       try {
         showSkillCD();
         showBossHP();
