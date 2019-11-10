@@ -25,8 +25,8 @@ function random(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function isCombat(){
-  return window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") >-1;
+function isCombat() {
+  return window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") > -1;
 }
 
 var simulateClick = function(elem) {
@@ -66,13 +66,14 @@ var simulateClick = function(elem) {
       elem.dispatchEvent(mup);
       elem.dispatchEvent(mclick);
     }, ddelay * random(.99, 1.2)); //default 1.2x
-  } catch (e) {
-  }
+  } catch (e) {}
 }
 
 /**Keyboard Events**/
 function pCA() {
-  if(!isCombat()) {return};
+  if (!isCombat()) {
+    return
+  };
   var c = document.querySelector('div.btn-lock.lock1');
   var c1 = document.querySelector('div.btn-lock.lock0'); //no auto
   !isNullOrUndefined(c) ? simulateClick(c) : null;
@@ -115,8 +116,6 @@ function pSpaceBar(e) {
     if (queue[0] === buttons[0] && !isNullOrUndefined(document.querySelector(queue[0]))) {
       elem = document.querySelector(queue[0]).className.includes("btn-usual-ok") ?
         document.querySelector(queue[0]) : document.querySelectorAll(queue[0])[1];
-      console.log(elem);
-      console.log(document.querySelector(queue[0]));
     } else {
       queue.forEach(function(value, i) {
         if (!isNullOrUndefined(document.querySelector(value))) {
@@ -137,7 +136,9 @@ function pSpaceBar(e) {
 }
 /**Show Skill Cooldowns**/
 function showSkillCD() {
-  if(!isCombat()) {return};
+  if (!isCombat()) {
+    return
+  };
   //all charater skill nodes
   var charaSkillDetails = document.querySelectorAll('[ability-id]');
   var cdCharaSkills = []; //sorted into chara[index], skills
@@ -181,7 +182,9 @@ function showSkillCD() {
 }
 /**Show Enemy HP**/
 function showBossHP() {
-  if(!isCombat()) {return};
+  if (!isCombat()) {
+    return
+  };
   try {
     var a = stage.pJsnData.boss;
     var enemyId = -1;
@@ -214,7 +217,9 @@ var sSkill = [];
 var selectedCombatChara;
 
 document.addEventListener('click', function(e) {
-  if(isCombat() && !isNullOrUndefined(e.target.parentNode) && !isNullOrUndefined(e.target.parentNode.getAttribute("pos"))){
+  if (isCombat() && !isNullOrUndefined(e.target.parentNode) && !isNullOrUndefined(e.target.parentNode.getAttribute("pos"))) {
+    selectedCombatChara = {};
+    sSkill = [];
     selectedCombatChara = e.target.parentNode;
     setCharaSkill(selectedCombatChara.getAttribute("pos"));
   }
@@ -223,30 +228,30 @@ document.addEventListener('click', function(e) {
 //Keypress handler
 document.addEventListener('keydown', function(e) {
   if (e.which === 32) {
-    var typing = false;
+    var typing = true;
     document.querySelectorAll("textarea").forEach(function(val, i) {
-      if (isNullOrUndefined(val.getAttribute("disabled"))) {
-        typing == true;
+      //found text area;
+      if (!isNullOrUndefined(val.getAttribute("disabled") && val.getAttribute("disabled") == true)) {
+        typing = false;
       }
     })
-    if (typing) {
-      return true;
-    } else {
+    if (!typing) {
+      pSpaceBar(e);
       e.preventDefault();
       e.stopPropagation();
+    }else{
+      return true;
     }
   }
-  if (e.keyCode === 32) {
-    pSpaceBar(e);
-  }
-  if (e.keyCode === 67) {
-    pCA();
-  }
-  if (e.keyCode === 82) {
-    pResetBonus();
-  }
+  if (e.keyCode === 67) {pCA();}
+  if (e.keyCode === 82) {pResetBonus();}
   if (e.key === "Escape" || e.key === "Esc") {
+    if(!isCombat()){
+      return;
+    }
     var backButton = document.querySelectorAll("div.btn-command-back");
+    selectedCombatChara = {};
+    sSkill = [];
     if (backButton.length > 0 && !isNullOrUndefined(backButton[0])) {
       simulateClick(backButton[0]);
     }
@@ -258,48 +263,49 @@ document.addEventListener('keydown', function(e) {
   var combat2 = [49, 50, 51, 52];
 
   if (combat2.includes(e.keyCode)) {
-    if(!isCombat()) {return};
+    if (!isCombat()) {
+      return
+    };
     var index = combat2.indexOf(e.keyCode);
     shortcutSelectChara(index)
   }
 
   if (combat.includes(e.keyCode)) {
-    if(!isCombat()) {return};
+    if (!isCombat()) {
+      return
+    };
     var index = combat.indexOf(e.keyCode);
     shortcutSkill(index);
   }
 
 });
 
-function setCharaSkill(index){
+function setCharaSkill(index) {
   sSkill = [];
   // document.querySelectorAll("div.prt-ability-list")[0].childNodes[1].className.includes("btn-ability-available")
   document.querySelectorAll("div.prt-ability-list")[index].childNodes.forEach(function(val, i) {
-    if (!isNullOrUndefined(val.className) && val.className.includes("btn-ability-")) {
+    if (!isNullOrUndefined(val.className) && val.className.includes("btn-ability")) {
       sSkill.push(val);
     }
   });
 }
 
-function shortcutSelectChara(index){
-  try{
+function shortcutSelectChara(index) {
+  try {
     simulateClick(document.querySelectorAll("div.lis-character" + index + ".btn-command-character")[0]);
     setCharaSkill(index);
-  }catch(e){  }
+  } catch (e) {}
 }
 
-function shortcutSkill(index){
-  try{
-    if(sSkill[index].className.includes("btn-ability-available")){
-      console.log(index);
-      console.log(sSkill);
+function shortcutSkill(index) {
+  try {
+    if (sSkill[index].className.includes("btn-ability-available")) {
       simulateClick(sSkill[index]);
     }
-  }catch(e){  }
+  } catch (e) {}
 }
 
-// The DOM node to observe
-// create an observer instance
+
 var observer = new MutationObserver(function(mutations) {
   try {
     showSkillCD();
@@ -308,14 +314,12 @@ var observer = new MutationObserver(function(mutations) {
     if (e instanceof ReferenceError) {};
   }
 });
-// configuration of the observer:
 var config = {
   attributes: true,
   childList: true,
   characterData: true
-}; //subtree:true
+};
 
-//DOMContentLoaded - Work around for showSkillCD not executing under listener on DOMContentLoaded
 var ready = function() {
   /* if(document.querySelectorAll("body.jssdk").length>0){
   	var trackerBar = document.createElement("div");
