@@ -26,35 +26,44 @@ function random(min, max) { // min and max included
 }
 
 function isCombat() {
-  return window.location.href.indexOf("http://game.granbluefantasy.jp/#raid_multi/") > -1 || window.location.href.indexOf("http://game.granbluefantasy.jp/#raid/") > -1;
+  return window.location.hash.indexOf("#raid_multi/") > -1 ||
+    window.location.hash.indexOf("#raid/") > -1;
 }
 
-var simulateClick = function (elem) {
+var simulateClick = function(elem) {
   try {
     var rect = elem.getBoundingClientRect(),
       topEnter = rect.top,
-      leftEnter = rect.left,
-      topMid = random(rect.bottom, rect.top),
-      leftMid = random(rect.right, rect.left),
-      ddelay = (rect.height + rect.width) * 0.1,
+      leftEnter = rect.left, // coordinates of elements topLeft corner
+      topMid = random(rect.bottom, rect.top), // Math.floor(Math.random() * (rect.bottom-rect.top+1)) + rect.top,
+      leftMid = random(rect.right, rect.left), //Math.floor(Math.random() * (rect.right-rect.left+1)) + rect.left
+      //topMid = topEnter + rect.height / 2,
+      //leftMid = topEnter + rect.width / 2, // coordinates of elements center
+      ddelay = (rect.height + rect.width) * 0.1, // delay depends on elements size, default 2x
       ducInit = {
         bubbles: true,
         clientX: leftMid,
         clientY: topMid
-      },
+      }, // create init object
+      // set up the four events, the first with enter-coordinates,
       mover = new MouseEvent('mouseover', {
         bubbles: true,
         clientX: leftEnter,
         clientY: topEnter
       }),
+      // the other with center-coordinates
       mdown = new MouseEvent('mousedown', ducInit),
       mup = new MouseEvent('mouseup', ducInit),
       mclick = new MouseEvent('click', ducInit);
+    // trigger mouseover = enter element at toLeft corner
     elem.dispatchEvent(mover);
-    window.setTimeout(function () {
+    // trigger mousedown  with delay to simulate move-time to center
+    window.setTimeout(function() {
       elem.dispatchEvent(mdown)
     }, ddelay);
-    window.setTimeout(function () {
+    // trigger mouseup and click with a bit longer delay
+    // to simulate time between pressing/releasing the button
+    window.setTimeout(function() {
       elem.dispatchEvent(mup);
       elem.dispatchEvent(mclick);
     }, ddelay * random(.99, 1.2)); //default 1.2x
@@ -135,38 +144,39 @@ function showSkillCD() {
   //all charater skill nodes
   var charaSkillDetails = document.querySelectorAll('[ability-id]');
   var cdCharaSkills = []; //sorted into chara[index], skills
-  for (i = 0; i <= 3; i++) { //sorting
+  for (var i = 0; i <= 3; i++) { //sorting
     var currentChara = {
       skills: []
     }
-    for (var i = 0; i < charaSkillDetails.length; i++) {
-      if (charaSkillDetails[i].outerHTML === document.querySelector("div.btn-usual-ok.btn-ability-use").outerHTML) {} else if ((charaSkillDetails[i].outerHTML.includes("ability-character-num-" + (i + 1)) === true)) {
-        if (!isNullOrUndefined(charaSkillDetails[i].getAttribute("ability-recast"))) {
-          currentChara.skills.push(charaSkillDetails[i].getAttribute("ability-recast"));
+    for (var j = 0; j < charaSkillDetails.length; j++) {
+      if (charaSkillDetails[j].outerHTML === document.querySelector("div.btn-usual-ok.btn-ability-use").outerHTML) {} else if ((charaSkillDetails[j].outerHTML.includes("ability-character-num-" + (i + 1)) === true)) {
+        if (!isNullOrUndefined(charaSkillDetails[j].getAttribute("ability-recast"))) {
+          currentChara.skills.push(charaSkillDetails[j].getAttribute("ability-recast"));
         }
       }
     }
+
     cdCharaSkills.push(currentChara);
   }
   var cdSkillMini = [];
-  var abilityStates = document.querySelectorAll('div.prt-ability-state');
-  for (var i = 0; i < abilityStates.length; i++) {
-    if (index <= 3) {
-      cdSkillMini.push(value);
+  var partyAbilityStates = document.querySelectorAll('div.prt-ability-state');
+  for (var i = 0; i < partyAbilityStates.length; i++) {
+    if (i <= 3) {
+      cdSkillMini.push(partyAbilityStates[i]);
     }
   }
   //looping each character, and its skills, to set its skill timer
   for (var i = 0; i < cdSkillMini.length; i++) {
     var skCount = 0;
-    var childNodes = document.querySelectorAll('div.prt-ability-state')[i].childNodes;
-    for (var j = 0; j < childNodes.length; j++) {
+    var stateChildren = document.querySelectorAll('div.prt-ability-state')[i].childNodes;
+    for (var j = 0; j < stateChildren.length; j++) {
       if ((j % 2) === 1) {
         var coolDown = cdCharaSkills[i].skills[skCount];
         if (!isNullOrUndefined(coolDown)) {
           if (coolDown === '0') {
             coolDown = "";
           }
-          childNodes[j].innerHTML = '<p style="position: relative;color:black;font-weight:bold;font-size: 6px;text-align: center;top: -4px;text-shadow: 0 0 10px #ffffff, 0 0 10px #ffffff;">' + coolDown + '</p>';
+          stateChildren[j].innerHTML = '<p style="position: relative;color:black;font-weight:bold;font-size: 6px;text-align: center;top: -4px;text-shadow: 0 0 10px #ffffff, 0 0 10px #ffffff;">' + coolDown + '</p>';
         }
         skCount++;
       }
@@ -181,28 +191,26 @@ function showBossHP() {
   try {
     var a = stage.pJsnData.boss;
     var enemyId = -1;
-    var hpBars = document.querySelectorAll("div.prt-gauge-area")[0].childNodes;
-    for (var i = 0; i < hpBars.length; i++) {
-      if (!isNullOrUndefined(hpBars[i].className) && hpBars[i].classList.contains("prt-enemy-percent")) {
+    document.querySelectorAll("div.prt-gauge-area")[0].childNodes.forEach(function(enemy, eIndex) {
+      if (!isNullOrUndefined(enemy.className) && enemy.classList.contains("prt-enemy-percent")) {
         enemyId++;
         var newStr = numberWithCommas(numberFormat(a.param[enemyId].hp, 1) + " / " + numberFormat(a.param[enemyId].hpmax), 1);
         var accPercHP = ((a.param[enemyId].hp / a.param[enemyId].hpmax) * 100).toFixed(1);
         var stillAlive = a.number;
-        var remaining = a.param;
-        for(var j = 0; j< remaining.length;j++){
+        a.param.forEach(function(e, i) {
           if (e.alive === 0) {
             stillAlive--;
           }
-        }
+        });
         if (stillAlive > 1) {
-          hpBars[i].childNodes[1].innerText = accPercHP + "%" + "\n (" + newStr + ")";
-          hpBars[i].childNodes[1].style.cssText = "text-shadow: 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400; display: -webkit-box; margin: -34px 0 0 -20px; font-size:12px; width: 200px !important";
+          enemy.childNodes[1].innerText = accPercHP + "%" + "\n (" + newStr + ")";
+          enemy.childNodes[1].style.cssText = "text-shadow: 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400; display: -webkit-box; margin: -34px 0 0 -20px; font-size:12px; width: 200px !important";
         } else {
-          hpBars[i].childNodes[1].innerText = accPercHP + "%" + "	(" + newStr + ")";
-          hpBars[i].childNodes[1].style.cssText = "text-shadow: 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400; display: -webkit-box; margin: -6px 0 0 70px; font-size:15px; width: 300px !important";
+          enemy.childNodes[1].innerText = accPercHP + "%" + "	(" + newStr + ")";
+          enemy.childNodes[1].style.cssText = "text-shadow: 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 1px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400, 0 0 2px #731400; display: -webkit-box; margin: -6px 0 0 70px; font-size:15px; width: 300px !important";
         }
       }
-    }
+    });
   } catch (e) {
     if (e instanceof ReferenceError) {}
   }
@@ -211,7 +219,7 @@ function showBossHP() {
 var sSkill = [];
 var selectedCombatChara;
 
-document.addEventListener('click', function (e) {
+document.addEventListener('click', function(e) {
   if (isCombat() && !isNullOrUndefined(e.target.parentNode) && !isNullOrUndefined(e.target.parentNode.getAttribute("pos"))) {
     selectedCombatChara = {};
     sSkill = [];
@@ -221,15 +229,16 @@ document.addEventListener('click', function (e) {
 });
 
 //Keypress handler
-document.addEventListener('keydown', function (e) {
+document.addEventListener('keydown', function(e) {
   if (e.which === 32) {
     var typing = true;
     var textAreas = document.querySelectorAll("textarea");
-    for(var i = 0; i<textAreas.length;i++){
+    for (var i = 0; i < textAreas.length; i++) {
       if (!isNullOrUndefined(textAreas[i].getAttribute("disabled") && textAreas[i].getAttribute("disabled") == true)) {
         typing = false;
       }
     }
+
     if (!typing) {
       pSpaceBar(e);
       e.preventDefault();
@@ -282,10 +291,10 @@ document.addEventListener('keydown', function (e) {
 function setCharaSkill(index) {
   sSkill = [];
   // document.querySelectorAll("div.prt-ability-list")[0].childNodes[1].className.includes("btn-ability-available")
-  var abilityChildNodes = document.querySelectorAll("div.prt-ability-list")[index].childNodes;
-  for(var i = 0; i<abilityChildNodes.length;i++){
-    if (!isNullOrUndefined(abilityChildNodes[i].className) && abilityChildNodes[i].className.includes("btn-ability")) {
-      sSkill.push(abilityChildNodes[i]);
+  var prtAbilityList = document.querySelectorAll("div.prt-ability-list")[index].childNodes;
+  for (var i = 0; i < prtAbilityList.length; i++) {
+    if (!isNullOrUndefined(prtAbilityList[i].className) && prtAbilityList[i].className.includes("btn-ability")) {
+      sSkill.push(prtAbilityList[i]);
     }
   }
 }
@@ -306,7 +315,7 @@ function shortcutSkill(index) {
 }
 
 
-var observer = new MutationObserver(function (mutations) {
+var observer = new MutationObserver(function(mutations) {
   try {
     showSkillCD();
     showBossHP();
@@ -320,7 +329,7 @@ var config = {
   characterData: true
 };
 
-var ready = function () {
+var ready = function() {
   /* if(document.querySelectorAll("body.jssdk").length>0){
   	var trackerBar = document.createElement("div");
   	trackerBar.className = "keimateItemTracker";
@@ -328,28 +337,22 @@ var ready = function () {
   	return;
   } */
   if (isCombat()) {
-    if (document.querySelectorAll('[ability-id]').length > 0 && document.querySelectorAll("div.prt-gauge-area")[0].childNodes.length > 0) {
-      var abiltiyIds = document.querySelectorAll('[ability-id]');
-      for (var i = 0; i < abiltiyIds.length; i++) {
-        observer.observe(abiltiyIds[i], {
+    var abilityIds = document.querySelectorAll('[ability-id]');
+    if (document.querySelectorAll('[ability-id]').length > 0 &&
+      document.querySelectorAll("div.prt-gauge-area")[0].childNodes.length > 0) {
+      for (var i = 0; i < document.querySelectorAll('[ability-id]').length; i++) {
+        observer.observe(document.querySelectorAll('[ability-id]')[i], {
           attributes: true,
           childList: true,
           characterData: true
-        })
+        });
       }
-      var enemyHpBars = document.querySelectorAll("[id^=enemy-hp]");
-      for (var i = 0; i < enemyHpBars.length; i++) {
-        observer.observe(enemyHpBars[i], {
+      for (var i = 0; i < document.querySelectorAll("[id^=enemy-hp]").length; i++) {
+        observer.observe(document.querySelectorAll("[id^=enemy-hp]")[i], {
           attributes: true,
           childList: true,
           characterData: true
-        })
-      }
-      var enemiesA = document.querySelectorAll("a");
-      for (var i = 0; i < enemiesA.length; i++) {
-        if (enemiesA[i].className.includes("enemy")) {
-          enemiesA[i].style.cssText = "display: inline-block;cursor:pointer;";
-        }
+        });
       }
 
       try {
@@ -359,7 +362,8 @@ var ready = function () {
         if (e instanceof ReferenceError) {};
       }
     }
-  } else if (window.location.href === "http://game.granbluefantasy.jp/#item" && document.querySelectorAll("div.lis-item.se").length > 0) {
+  } else if (window.location.href === "http://game.granbluefantasy.jp/#item" &&
+    document.querySelectorAll("div.lis-item.se").length > 0) {
     //loadTracker("Supply");
     return;
   }
