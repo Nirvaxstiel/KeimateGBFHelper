@@ -2,7 +2,7 @@
 <img width="50%" height="50%" src="https://media.discordapp.net/attachments/202344810022043648/630295077847302145/mqdefault.jpg">
 Bring back Viramate pls (Click to watch)
 
-[![Keimate](http://cdn-b-east.streamable.com/image/hewga_first.jpg?token=KfMVh-fBBpyRRPbR2MZpJg&expires=1563547380)](https://streamable.com/3boi4 "Keimate")
+[![Keimate](http://cdn-b-east.streamable.com/image/hewga_first.jpg?token=KfMVh-fBBpyRRPbR2MZpJg&expires=1563547380)](https://streamable.com/3boi4)
 
 # What I have re-created thus far:
  
