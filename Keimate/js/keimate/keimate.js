@@ -113,7 +113,7 @@ function pSpaceBar(e) {
       for (var i = 0; i < queue.length; i++) {
         if (!isNullOrUndefined(document.querySelector(queue[i]))) {
           elem = document.querySelector(queue[i]);
-        } else if (value === "div.btn-evolution.active") {
+        } else if (queue[i] === "div.btn-evolution.active") {
           elem = document.querySelector("#btn-evolution");
         }
       }
@@ -347,8 +347,8 @@ var ready = function () {
       }
       var enemiesA = document.querySelectorAll("a");
       for (var i = 0; i < enemiesA.length; i++) {
-        if (val.className.includes("enemy")) {
-          val.style.cssText = "display: inline-block;cursor:pointer;";
+        if (enemiesA[i].className.includes("enemy")) {
+          enemiesA[i].style.cssText = "display: inline-block;cursor:pointer;";
         }
       }
 
