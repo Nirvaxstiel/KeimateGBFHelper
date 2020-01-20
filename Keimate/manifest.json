@@ -27,13 +27,20 @@
     },
 	"web_accessible_resources": [
 		"css/keimate/keimate-minified.css",
-		"js/keimate/keimate-min.js"
+    "js/keimate/keimate.min.js",
+    "js/keimate/keimate.combat.min.js",
+    "js/keimate/observer.min.js"
 	],
 	"content_scripts": [
 		{
 		  "matches": ["http://game.granbluefantasy.jp/*"],
-		  "js": ["js/keimate/keimate-min.js", "js/contentScripts.js"],
+		  "js": ["js/keimate/keimate.min.js", "js/contentScripts.js"],
 		  "css" : ["css/keimate/keimate-minified.css"]
-		}
+    },
+    {
+      "matches": ["http://game.granbluefantasy.jp/#raid_multi*"],
+		  "js": ["js/keimate/keimate.combat.min.js","js/keimate/observer.min.js", "js/contentScripts.js"],
+		  "css" : ["css/keimate/keimate-minified.css"]
+    }
 	]
 }
