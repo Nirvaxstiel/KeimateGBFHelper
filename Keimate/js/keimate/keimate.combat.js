@@ -143,7 +143,8 @@ function setCharaSkill(index) {
 	sSkill = [];
 	// document.querySelectorAll("div.prt-ability-list")[0].childNodes[1].className.includes("btn-ability-available")
 	var prtAbilityList = document.querySelectorAll("div.prt-ability-list")[index].childNodes;
-	sSkill = prtAbilityList.filter(function (item) {
+	
+	sSkill = Object.values(prtAbilityList).filter(function (item) {
 		if (!isNullOrUndefined(item.className) && item.className.includes("btn-ability")) {
 			return item;
 		}

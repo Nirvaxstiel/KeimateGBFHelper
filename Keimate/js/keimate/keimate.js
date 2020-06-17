@@ -98,7 +98,7 @@ function pSpaceBar(e) {
 			document.querySelectorAll(buttons[0])[1];
 	} else {
 		for (var i = 1; i < buttons.length; i++) {
-			var btn = document.querySelector(buttons[i]);
+			var btn = document.querySelector(buttons[i]);			
 			if (!isNullOrUndefined(btn)) {
 				elem = btn;
 			} else if (buttons[i] === "div.btn-evolution.active") {
@@ -110,10 +110,10 @@ function pSpaceBar(e) {
 	if (!isNullOrUndefined(elem)) {
 		var overlayMask = document.querySelector('div.onm-anim-mask');
 		if (!isNullOrUndefined(overlayMask) && getComputedStyle(overlayMask).getPropertyValue('display') === "none") {
-			simulateClick(overlayMask);
-			return;
+			simulateClick(overlayMask);			
+		}else{
+			simulateClick(elem);
 		}
-		simulateClick(elem);
 	}
 }
 

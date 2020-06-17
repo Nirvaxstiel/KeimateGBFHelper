@@ -1,12 +1,12 @@
 {
     "name": "Keimate",
-    "version": "1.54",
+    "version": "1.56",
     "description": "Fuck KMR",
     "manifest_version": 2,
 	"permissions": ["activeTab", "declarativeContent", "storage","tabs"],
 	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
 	"background": {
-      "scripts": ["background.js", "js/keimate/keimate-min.js"],
+      "scripts": ["background.js", "js/keimate/keimate.min.js"],
       "persistent": false
     },
 	"options_page": "options.html",
@@ -27,20 +27,15 @@
     },
 	"web_accessible_resources": [
 		"css/keimate/keimate-minified.css",
-    "js/keimate/keimate.min.js",
-    "js/keimate/keimate.combat.min.js",
-    "js/keimate/observer.min.js"
+		"js/keimate/keimate.js",
+		"js/keimate/keimate.combat.js",
+		"js/keimate/observer.js"
 	],
 	"content_scripts": [
 		{
 		  "matches": ["http://game.granbluefantasy.jp/*"],
-		  "js": ["js/keimate/keimate.min.js", "js/contentScripts.js"],
+		  "js": ["js/keimate/keimate.js", "js/keimate/keimate.combat.js","js/keimate/observer.js", "js/contentScripts.js"],
 		  "css" : ["css/keimate/keimate-minified.css"]
-    },
-    {
-      "matches": ["http://game.granbluefantasy.jp/#raid_multi*"],
-		  "js": ["js/keimate/keimate.combat.min.js","js/keimate/observer.min.js", "js/contentScripts.js"],
-		  "css" : ["css/keimate/keimate-minified.css"]
-    }
+		}
 	]
 }
